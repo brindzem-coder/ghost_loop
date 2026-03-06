@@ -22,27 +22,14 @@ export function GameScreen(): React.JSX.Element {
   );
 
   const handleStart = useCallback(() => {
-    const nextElapsedMs = 0;
-
+    setState((prev) => startRound(prev));
     controller.stop();
-    setState((prev) =>
-      startRound({
-        ...prev,
-        elapsedMs: nextElapsedMs,
-      })
-    );
-    controller.start(nextElapsedMs);
+    controller.start(0);
   }, [controller]);
 
   const handleReset = useCallback(() => {
     controller.stop();
     setState((prev) => reset(prev));
-  }, [controller]);
-
-  useEffect(() => {
-    return () => {
-      controller.stop();
-    };
   }, [controller]);
 
   useEffect(() => () => controller.stop(), [controller]);
