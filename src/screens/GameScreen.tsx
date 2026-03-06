@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 
 import { Arena } from '../components/Arena';
@@ -21,21 +21,23 @@ export function GameScreen(): React.JSX.Element {
     []
   );
 
-  const handleStart = () => {
+  const handleStart = useCallback(() => {
+    const nextElapsedMs = 0;
+
     controller.stop();
     setState((prev) =>
       startRound({
         ...prev,
-        elapsedMs: 0,
+        elapsedMs: nextElapsedMs,
       })
     );
-    controller.start(0);
-  };
+    controller.start(nextElapsedMs);
+  }, [controller]);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     controller.stop();
     setState((prev) => reset(prev));
-  };
+  }, [controller]);
 
   useEffect(() => {
     return () => {
