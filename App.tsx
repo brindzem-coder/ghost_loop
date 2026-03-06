@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <StatusBar style="light" />
+      <StatusBar style="light" translucent={false} />
       <Stack.Navigator
         initialRouteName="Menu"
         screenOptions={{
