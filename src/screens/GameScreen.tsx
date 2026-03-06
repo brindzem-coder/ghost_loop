@@ -45,6 +45,8 @@ export function GameScreen(): React.JSX.Element {
     };
   }, [controller]);
 
+  useEffect(() => () => controller.stop(), [controller]);
+
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.content}>
